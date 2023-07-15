@@ -24,4 +24,12 @@ internal class ExternalApiCallController(
             MutableMap::class.java
         )
     }
+
+    @GetMapping("/reev")
+    fun reevBE(auth: Authentication?): String? {
+        return restTemplate.getForObject(
+            "http://localhost:9000/api/sample",
+            String::class.java
+        )
+    }
 }
