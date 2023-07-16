@@ -1,6 +1,5 @@
 package com.reev.authenticationserver.config.monolith
 
-import com.reev.authenticationserver.config.monolith.TokenAccessor
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpRequest
 import org.springframework.http.client.ClientHttpRequestExecution
