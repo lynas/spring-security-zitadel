@@ -1,6 +1,5 @@
 package com.reev.authenticationserver.config.monolith
 
-import com.reev.authenticationserver.config.zitadel.AccessTokenInterceptor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.web.client.RestTemplateBuilder

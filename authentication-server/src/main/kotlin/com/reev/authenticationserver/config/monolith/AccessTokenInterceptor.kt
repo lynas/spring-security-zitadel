@@ -1,4 +1,4 @@
-package com.reev.authenticationserver.config.zitadel
+package com.reev.authenticationserver.config.monolith
 
 import com.reev.authenticationserver.config.monolith.TokenAccessor
 import org.springframework.http.HttpHeaders
