@@ -1,4 +1,4 @@
-package com.reev.authenticationserver.config.zitadel
+package com.reev.authenticationserver.config.monolith
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.Authentication
@@ -24,7 +24,8 @@ class TokenAccessor {
         val authToken = clientAuth as OAuth2AuthenticationToken
         val clientId = authToken.authorizedClientRegistrationId
         val username = clientAuth.getName()
-        val authorizedClient = oauth2ClientService.loadAuthorizedClient<OAuth2AuthorizedClient>(clientId, username)
+        val authorizedClient = oauth2ClientService
+            .loadAuthorizedClient<OAuth2AuthorizedClient>(clientId, username)
         return authorizedClient?.accessToken
     }
 }

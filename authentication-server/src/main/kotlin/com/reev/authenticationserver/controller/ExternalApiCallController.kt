@@ -17,7 +17,7 @@ internal class ExternalApiCallController(
 ) {
 
 
-    @GetMapping("/pings/me")
+    @GetMapping("/ping/me")
     fun pingServer(auth: Authentication?): Any {
         return restTemplate.getForObject<Map<*, *>>(
             "http://localhost:18090/api/ping/me",

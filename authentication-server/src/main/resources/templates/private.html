@@ -8,6 +8,18 @@
 <div>
     <p th:text="${auth}"></p>
 </div>
+<div>
+    <p>Bearer token</p>
+    <p th:text="${token}"></p>
+</div>
+<div>
+    <a href="http://localhost:18080/webapp/api/reev"> reev monolith </a>
+</div>
+
+<div>
+    <a href="http://localhost:18080/webapp/api/ping/me"> another api server </a>
+</div>
+
 <form th:action="@{/logout}" method="POST" >
     <input type="submit" value="Logout"/>
 </form>
