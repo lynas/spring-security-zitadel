@@ -37,13 +37,7 @@ internal class SecurityConfig {
         httpSecurity: HttpSecurity,
     ): SecurityFilterChain {
         httpSecurity.authorizeHttpRequests {
-            it.requestMatchers(
-                "/webjars/**",
-                "/resources/**",
-                "/css/**",
-                "/login/**",
-                "/",
-            ).permitAll()
+            it.requestMatchers("/",).permitAll()
             it.anyRequest().fullyAuthenticated()
         }
         httpSecurity.oauth2Client {
@@ -73,14 +67,14 @@ internal class SecurityConfig {
 
     @Bean
     fun clientRegistrationRepository(): ClientRegistrationRepository {
-        val registration = ClientRegistration.withRegistrationId("zitadel")
+        val registration = ClientRegistration
+            .withRegistrationId("zitadel")
             .userNameAttributeName("preferred_username")
             .clientId(clientId)
             .clientSecret(clientSecret)
             .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
             .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
             .scope("openid", "profile")
-            .userNameAttributeName("preferred_username")
             .issuerUri(issuerUri)
             .redirectUri("{baseUrl}/login/oauth2/code/zitadel")
             .authorizationUri("$issuerUri/oauth/v2/authorize")
