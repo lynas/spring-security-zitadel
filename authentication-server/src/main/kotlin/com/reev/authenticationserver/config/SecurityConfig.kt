@@ -23,13 +23,12 @@ internal class SecurityConfig {
         httpSecurity: HttpSecurity,
         clientRegistrationRepository: ClientRegistrationRepository?
     ): SecurityFilterChain {
-        httpSecurity.authorizeRequests {
-            it.antMatchers(
+        httpSecurity.authorizeHttpRequests {
+            it.requestMatchers(
                 "/webjars/**",
                 "/resources/**",
                 "/css/**",
                 "/",
-//                "/private",
             ).permitAll()
             it.anyRequest().fullyAuthenticated()
         }
@@ -39,11 +38,14 @@ internal class SecurityConfig {
                     clientRegistrationRepository,
                     OAuth2AuthorizationRequestRedirectFilter.DEFAULT_AUTHORIZATION_REQUEST_BASE_URI //
                 )
-            it.authorizationCodeGrant()
-                .authorizationRequestResolver(oauth2AuthRequestResolver)
+            it.authorizationCodeGrant{ authCodeGrant ->
+                authCodeGrant.authorizationRequestResolver(oauth2AuthRequestResolver)
+            }
         }
         httpSecurity.oauth2Login {
-            it.userInfoEndpoint().userAuthoritiesMapper(zitadelMapper())
+            it.userInfoEndpoint{userInfoEndpoint ->
+                userInfoEndpoint.userAuthoritiesMapper(zitadelMapper())
+            }
         }
         httpSecurity.logout {
             it.addLogoutHandler(zitadelLogoutHandler)
