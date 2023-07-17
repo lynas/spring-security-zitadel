@@ -5,18 +5,22 @@ server:
   port: 18080
   servlet:
     context-path: /webapp
-spring:
-  security:
-    oauth2:
-      client:
-        provider:
-          zitadel:
-            issuerUri: https://test-fojq5t.zitadel.cloud
-            user-name-attribute: preferred_username
-        registration:
-          zitadel:
-            client-id: 222722778418184449@reev-be
-            client-secret: ${REEV_BE_SECRET:secret}
-            client-authentication-method: client_secret_basic
-            authorizationGrantType: authorization_code
-            scope: ["openid", "profile"]
+#spring:
+#  security:
+#    oauth2:
+#      client:
+#        provider:
+#          zitadel:
+#            issuerUri: https://test-fojq5t.zitadel.cloud
+#            user-name-attribute: preferred_username
+#        registration:
+#          zitadel:
+#            client-id: 222722778418184449@reev-be
+#            client-secret: ${REEV_BE_SECRET:secret}
+#            client-authentication-method: client_secret_basic
+#            authorizationGrantType: authorization_code
+#            scope: ["openid", "profile"]
+zitadel:
+  clientId: 222722778418184449@reev-be
+  clientSecret: ${REEV_BE_SECRET:secret}
+  issuerUri: https://test-fojq5t.zitadel.cloud
