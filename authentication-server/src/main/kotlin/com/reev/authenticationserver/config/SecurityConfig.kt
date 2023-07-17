@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient
 import org.springframework.security.oauth2.client.registration.ClientRegistration
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository
@@ -36,7 +35,6 @@ internal class SecurityConfig {
     @Bean
     fun securityChain(
         httpSecurity: HttpSecurity,
-//        clientRegistrationRepository: ClientRegistrationRepository
     ): SecurityFilterChain {
         httpSecurity.authorizeHttpRequests {
             it.requestMatchers(
@@ -76,6 +74,7 @@ internal class SecurityConfig {
     @Bean
     fun clientRegistrationRepository(): ClientRegistrationRepository {
         val registration = ClientRegistration.withRegistrationId("zitadel")
+            .userNameAttributeName("preferred_username")
             .clientId(clientId)
             .clientSecret(clientSecret)
             .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
@@ -83,10 +82,11 @@ internal class SecurityConfig {
             .scope("openid", "profile")
             .userNameAttributeName("preferred_username")
             .issuerUri(issuerUri)
-            .redirectUri("http://localhost:18080/webapp/login/oauth2/code/zitadel")
+            .redirectUri("{baseUrl}/login/oauth2/code/zitadel")
             .authorizationUri("$issuerUri/oauth/v2/authorize")
             .tokenUri("$issuerUri/oauth/v2/token")
             .jwkSetUri("$issuerUri/oauth/v2/keys")
+            .userInfoUri("$issuerUri/oidc/v1/userinfo")
             .build()
 
         return InMemoryClientRegistrationRepository(registration)

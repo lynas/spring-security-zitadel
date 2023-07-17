@@ -13,7 +13,7 @@ import java.io.IOException
 @Component
 class ZitadelLogoutHandler : LogoutHandler {
 
-    @Value("\${app.end-session.url}")
+    @Value("\${zitadel.endSessionUri}")
     private lateinit var endSessionEndpoint: String
 
     override fun logout(request: HttpServletRequest, response: HttpServletResponse, auth: Authentication) {
