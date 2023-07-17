@@ -83,13 +83,12 @@ internal class SecurityConfig {
             .scope("openid", "profile")
             .userNameAttributeName("preferred_username")
             .issuerUri(issuerUri)
-            .redirectUri("http://localhost:18080/webapp/private")
-            .authorizationUri("https://test-fojq5t.zitadel.cloud/oauth/v2/authorize")
-            .tokenUri("https://test-fojq5t.zitadel.cloud/oauth/v2/token")
-            .jwkSetUri("https://test-fojq5t.zitadel.cloud/oauth/v2/keys")
+            .redirectUri("http://localhost:18080/webapp/login/oauth2/code/zitadel")
+            .authorizationUri("$issuerUri/oauth/v2/authorize")
+            .tokenUri("$issuerUri/oauth/v2/token")
+            .jwkSetUri("$issuerUri/oauth/v2/keys")
             .build()
 
         return InMemoryClientRegistrationRepository(registration)
     }
 }
-//        .redirectUriTemplate("{baseUrl}/login/oauth2/code/{registrationId}") // add your redirect URI here
