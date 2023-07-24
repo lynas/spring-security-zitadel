@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RestController
 internal class PingController {
     @GetMapping("/api/ping/me")
     fun pingMe(auth: Authentication): Any {
-        val tokenDetails = (auth as BearerTokenAuthentication).tokenAttributes
-        val pingEcho = "Hello, " + tokenDetails[StandardClaimNames.PREFERRED_USERNAME] + " Ping successful."
+//        val tokenDetails = (auth as BearerTokenAuthentication).tokenAttributes
+//        val pingEcho = "Hello, " + tokenDetails[StandardClaimNames.PREFERRED_USERNAME] + " Ping successful."
         return mapOf(
-            "ping_echo" to  pingEcho,
-            "token_details" to tokenDetails
+            "ping_echo" to  "s",
+            "token_details" to auth,
+            "auth" to auth.authorities,
         )
     }
 }

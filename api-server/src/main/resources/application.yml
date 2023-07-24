@@ -19,7 +19,7 @@ spring:
         jwt:
           issuer-uri: https://test-fojq5t.zitadel.cloud
           jwk-set-uri: https://test-fojq5t.zitadel.cloud/oauth/v2/keys
-        opaquetoken:
-          introspection-uri: https://test-fojq5t.zitadel.cloud/oauth/v2/introspect
-          client-id: 222722234098188545@reev-be
-          client-secret: ${REEV_BE_API_SECRET:secret}
+#        opaquetoken:
+#          introspection-uri: https://test-fojq5t.zitadel.cloud/oauth/v2/introspect
+#          client-id: 222722234098188545@reev-be
+#          client-secret: ${REEV_BE_API_SECRET:secret}
