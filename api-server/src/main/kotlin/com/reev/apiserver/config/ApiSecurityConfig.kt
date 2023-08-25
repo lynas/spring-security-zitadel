@@ -19,7 +19,7 @@ internal class ApiSecurityConfig {
             it.mvcMatchers("/api/**").authenticated()
             it.anyRequest().authenticated() //
         }
-//        httpSecurity.oauth2ResourceServer().opaqueToken()
+        //httpSecurity.oauth2ResourceServer().opaqueToken()
         httpSecurity.oauth2ResourceServer().jwt()
         return httpSecurity.build()
     }
